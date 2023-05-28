@@ -64,7 +64,6 @@ const counterRef= useRef(0)
 const selectBackbeat= (e)=>{
   e.preventDefault()
   const {value} = e.target
-  console.log(value)
   backbeatRef.current=value
   loop.stop()
   setPlaying(false)
