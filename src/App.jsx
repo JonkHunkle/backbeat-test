@@ -25,7 +25,12 @@ const counterRef= useRef(0)
       sn:[0,0,0,0,1,0,0,0]
     }
   })
-  
+  const playSong=(time)=>{
+    play(time)
+    counterRef.current = (counterRef.current +1)%division
+  }
+
+
   let play = (time)=>{
     for (const instrument in drumRef.current[backbeatRef.current]){
       drumRef.current[backbeatRef.current][instrument].forEach((beat, i) => {
@@ -35,7 +40,6 @@ const counterRef= useRef(0)
         }
       })
     }
-    counterRef.current = (counterRef.current +1)%division
 }
   const startBeat = async(e)=>{
     e.preventDefault()
@@ -90,7 +94,7 @@ const selectBackbeat= (e)=>{
     drumSetRef.current=newDrum
   }
 
-  if(loop===undefined) setLoop(new Tone.Loop(play, '16n'))
+  if(loop===undefined) setLoop(new Tone.Loop(playSong, '16n'))
 
   },[])
 
